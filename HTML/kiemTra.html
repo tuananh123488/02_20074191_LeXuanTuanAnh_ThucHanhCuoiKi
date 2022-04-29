@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lê Xuân Tuấn Anh</title>
+    <link rel="stylesheet" href="../CSS/bootstrap.min.css">
+    <script src="../JS/jquery-3.6.0.min.js"></script>
+    <script src="../JS/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#btn').click(function(){
+                $('#myModal').modal();
+            });
+
+            function kiemTraTen(){
+            var i=1;
+            let mauKT=/([A-Z]{1}[a-z]+)((\s{1}[A-Z]{1}[a-z]+){1,})$/;
+            if($("#Name").val()==""){
+                $("#tbName").html("Khong de trong");
+                return false;
+            }
+            if(!mauKT.test($("#Name").val())){
+                $("#tbName").html("Moi ki tu dau viet hoa khong viet so");
+                return false;
+            }
+            $("#tbName").html("*");
+                return true;
+            }
+            $("#Name").blur(kiemTraTen);
+
+            function kiemTraCMND(){
+            var i=1;
+            let mauKT=/^\d{3}-\d{3}-\d{3}$/;
+            if($("#CMND").val()==""){
+                $("#tbCMND").html("Khong de trong");
+                return false;
+            }
+            if(!mauKT.test($("#CMND").val())){
+                $("#tbCMND").html("theo khuôn dạng: xxx-xxx-xxx ");
+                return false;
+            }
+            $("#tbCMND").html("*");
+                return true;
+            }
+            $("#CMND").blur(kiemTraCMND);
+       
+            function kiemTraQQ(){
+            let mauKT=/([A-Z]{1}[a-z]+)((\s{1}[A-Z]{1}[a-z]+){1,})$/;
+            if($("#QQ").val()==""){
+                $("#tbQQ").html("Khong de trong");
+                return false;
+            }
+            if(!mauKT.test($("#QQ").val())){
+                $("#tbQQ").html("Moi ki tu dau viet hoa khong viet so");
+                return false;
+            }
+            $("#tbQQ").html("*");
+                return true;
+            }
+            $("#QQ").blur(kiemTraQQ);
+
+            function kiemTraSDT(){
+            let mauKT=/^(09)\d{2}-\d{3}-\d{3}$/;
+            if($("#SDT").val()==""){
+                $("#tbSDT").html("Khong de trong");
+                return false;
+            }
+            if(!mauKT.test($("#SDT").val())){
+                $("#tbSDT").html("theo khuôn dạng: 09xx-xxx-xxx ");
+                return false;
+            }
+            $("#tbSDT").html("*");
+                return true;
+            }
+            $("#SDT").blur(kiemTraSDT);
+
+            function kiemTraEmail(){
+            let mauKT=/^([A-Z][a-z][0-9])+(@bc.com.vn)$/;
+            if($("#Email").val()==""){
+                $("#tbEmail").html("Khong de trong");
+                return false;
+            }
+            if(!mauKT.test($("#Email").val())){
+                $("#tbEmail").html("theo mẫu xxxxxx@bc.com.vn");
+                return false;
+            }
+            $("#tbEmail").html("*");
+                return true;
+            }
+            $("#Email").blur(kiemTraEmail);
+
+
+        $('#luu').click(function(){
+        var i=1;
+            row ='<tr>';
+            row +='<th>'+(i++)+'</th>';
+            row +='<th>'+$('#Name').val()+'</th>';
+            row +='<th>'+$('#CMND').val()+'</th>';
+            row +='<th>'+$('#QQ').val()+'</th>';
+            row +='<th>'+$('#Email').val()+'</th>';
+            row +='<th>'+$('#SDT').val()+'</th>';
+            row +='<th>'+$('#Anh').val()+'</th>';
+            row +='</tr>';
+            $('#danhSach').append(row);
+            $('#myModal').modal('hide');
+        });
+            
+        });
+        
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <img src="../IMG/banner.PNG" alt="">
+            </div>
+        </div>
+        <div class="row">
+            <nav class="navbar navbar-expand-md col-md-12">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item"><a href="#" class="nav-link">Đăng nhập</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" id="btn">Đăng kí</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center">DANH SÁCH ĐĂNG KÍ LÀM CĂN CƯỚC SINH VIÊN</h1>
+                <h1 class="text-center">TRƯỜNG DHCN THÀNH PHỐ HỒ CHÍ MINH</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped" id="danhSach">
+                    <tr>
+                        <th>STT</th>
+                        <th>Họ tên</th>
+                        <th>SCMND cũ</th>
+                        <th>Quê quán</th>
+                        <th>Email</th>
+                        <th>Điện thoại</th>
+                        <th>Ảnh đại diện</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="text-center">THÔNG TIN CÁ NHÂN</h1>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-horizontal" role="form">
+                        <label for="Name" class="control-lable col-md-3">Họ tên</label>
+                        <div class="col-md-12">
+                            <input type="text" id="Name" class="form-control" placeholder="Nhập họ tên">
+                            <span class="text-danger" id="tbName">*</span>
+                        </div>
+
+                        <label for="CMND" class="control-lable col-md-3">SCMND cũ</label>
+                        <div class="col-md-12">
+                            <input type="text" id="CMND" class="form-control" placeholder="Nhập SCMND cũ">
+                            <span class="text-danger" id="tbCMND">*</span>
+                        </div>
+
+                        <label for="QQ" class="control-lable col-md-3">Quê quán</label>
+                        <div class="col-md-12">
+                            <input type="text" id="QQ" class="form-control" placeholder="Nhập tỉnh của bạn">
+                            <span class="text-danger" id="tbQQ">*</span>
+                        </div>
+
+                        <label for="Email" class="control-lable col-md-3">Email</label>
+                        <div class="col-md-12">
+                            <input type="text" id="Email" class="form-control" placeholder="Nhập Email của bạn">
+                            <span class="text-danger" id="tbEmail">*</span>
+                        </div>
+
+                        <label for="SDT" class="control-lable col-md-3">Số điện thoại</label>
+                        <div class="col-md-12">
+                            <input type="text" id="SDT" class="form-control" placeholder="xxxx-xxx-xxx">
+                            <span class="text-danger" id="tbSDT">*</span>
+                        </div>
+
+                        <label for="Anh" class="control-lable col-md-3">Ảnh đại diện</label>
+                        <div class="col-md-12">
+                            <input type="file" id="Anh" class="form-control" >
+                            <span class="text-danger" id="tbAnh">*</span>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="luu" class="btn btn-success col-md-12"> Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
